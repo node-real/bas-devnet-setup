@@ -8,7 +8,7 @@ install:
 
 .PHONY: compile
 compile:
-	rm -rf build &&  cd ../genesis && yarn compile && node build-abi.js && cp -r build ../nodereal-genesis
+	rm -rf build &&  cd ../genesis && yarn compile && node build-abi.js && cp -r build ../nr-genesis
 
 .PHONY: test
 test:
@@ -16,7 +16,7 @@ test:
 
 .PHONY: create-genesis
 create-genesis:
-	go run ./nodereal-genesis.go config.json genesis.json
+	go run ./nr-create-genesis.go nr-config.json genesis.json
 
 .PHONY: all
 all: clean install compile create-genesis

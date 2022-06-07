@@ -250,15 +250,6 @@ func createValidators(count int, pwd string, dir string) []common.Address {
 	}
 	return validators
 }
-func writeEmptyFile(filePath string, content []byte) {
-	os.Remove(filePath)
-	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE, 0666)
-	if err != nil {
-		panic(fmt.Errorf("write %s %s", filePath, err.Error()))
-	}
-	defer file.Close()
-	file.Write(content)
-}
 func generatePath(dir string, path string) string {
 	if dir == "" {
 		return path
@@ -282,7 +273,7 @@ func createGenesisConfig(config genesisConfig, targetFile string) error {
 	if config.AutoCreate.Password == "" {
 		config.AutoCreate.Password = generateRandomString(10)
 	}
-	writeEmptyFile(generatePath(config.AutoCreate.ResultDir, "password.txt"), []byte(config.AutoCreate.Password))
+	ioutil.WriteFile(generatePath(config.AutoCreate.ResultDir, "password.txt"), []byte(config.AutoCreate.Password), fs.ModePerm)
 	keystoreDir := generatePath(config.AutoCreate.ResultDir, "keystore")
 	validatorAddresses := createValidators(len(config.ValidatorOwners), config.AutoCreate.Password, keystoreDir)
 	if len(validatorAddresses) != len(config.ValidatorOwners) {
@@ -309,6 +300,13 @@ func createGenesisConfig(config genesisConfig, targetFile string) error {
 		initialStakeTotal.Add(initialStakeTotal, initialStake)
 	}
 	silent := targetFile == "stdout"
+	if config.InitialStakes == nil {
+		config.InitialStakes = map[common.Address]string{}
+	}
+	for i, v := range config.Validators {
+		config.InitialStakes[v] = hexutil.EncodeBig(initialStakes[i])
+	}
+
 	invokeConstructorOrPanic(genesis, stakingAddress, stakingRawArtifact, []string{"address[]", "uint256[]", "uint16"}, []interface{}{
 		config.Validators,
 		initialStakes,
@@ -371,6 +369,8 @@ func createGenesisConfig(config genesisConfig, targetFile string) error {
 		_, err := os.Stderr.Write(newJson)
 		return err
 	}
+	help, _ := json.MarshalIndent(config, "", "  ")
+	ioutil.WriteFile(generatePath(config.AutoCreate.ResultDir, "nr-tower.json"), help, fs.ModePerm)
 	return ioutil.WriteFile(targetFile, newJson, fs.ModePerm)
 }
 
