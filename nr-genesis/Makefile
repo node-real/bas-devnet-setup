@@ -10,10 +10,6 @@ install:
 compile:
 	rm -rf build &&  cd ../genesis && yarn compile && node build-abi.js && cp -r build ../nr-genesis
 
-.PHONY: test
-test:
-	yarn coverage
-
 .PHONY: create-genesis
 create-genesis:
 	go run ./nr-create-genesis.go nr-config.json genesis.json
