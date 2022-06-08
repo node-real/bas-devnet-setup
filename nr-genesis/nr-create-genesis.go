@@ -512,7 +512,10 @@ func main() {
 		}
 		return
 	}
-	fmt.Printf("building local net\n")
+	fmt.Printf("Error! need config file , For example:\n")
+	fmt.Printf("The first  way:    ./nr-create-genesis nr-config.json genesis.json\n")
+	fmt.Printf("The second way:    go run ./nr-create-genesis.go nr-config.json genesis.json\n")
+	/*fmt.Printf("building local net\n")
 	if err := createGenesisConfig(localNetConfig, "localnet.json"); err != nil {
 		panic(err)
 	}
@@ -520,5 +523,5 @@ func main() {
 	if err := createGenesisConfig(devNetConfig, "devnet.json"); err != nil {
 		panic(err)
 	}
-	fmt.Printf("\n")
+	fmt.Printf("\n")*/
 }
