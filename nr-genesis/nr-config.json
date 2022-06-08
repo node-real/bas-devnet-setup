@@ -4,7 +4,7 @@
     "password": ""
   },
   "chainId": 14001,
-  "validatorOwners": [
+  "Owners": [
     "0x08fae3885e299c24ff9841478eb946f41023ac69",
     "0x751aaca849b09a3e347bbfe125cf18423cc24b40",
     "0xa6ff33e3250cc765052ac9d7f7dfebda183c4b9b",

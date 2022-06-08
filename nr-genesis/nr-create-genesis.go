@@ -208,7 +208,7 @@ type genesisConfig struct {
 	ChainId            int64                     `json:"chainId"`
 	Deployers          []common.Address          `json:"deployers"`
 	Validators         []common.Address          `json:"validators"`
-	ValidatorOwners    []common.Address          `json:"validatorOwners"`
+	Owners             []common.Address          `json:"owners"`
 	SystemTreasury     map[common.Address]uint16 `json:"systemTreasury"`
 	ConsensusParams    consensusParams           `json:"consensusParams"`
 	VotingPeriod       int64                     `json:"votingPeriod"`
@@ -275,8 +275,8 @@ func createGenesisConfig(config genesisConfig, targetFile string) error {
 	}
 	ioutil.WriteFile(generatePath(config.AutoCreate.ResultDir, "password.txt"), []byte(config.AutoCreate.Password), fs.ModePerm)
 	keystoreDir := generatePath(config.AutoCreate.ResultDir, "keystore")
-	validatorAddresses := createValidators(len(config.ValidatorOwners), config.AutoCreate.Password, keystoreDir)
-	if len(validatorAddresses) != len(config.ValidatorOwners) {
+	validatorAddresses := createValidators(len(config.Owners), config.AutoCreate.Password, keystoreDir)
+	if len(validatorAddresses) != len(config.Owners) {
 		panic(errors.New("create validator address error"))
 	}
 	config.Validators = validatorAddresses
@@ -287,7 +287,7 @@ func createGenesisConfig(config genesisConfig, targetFile string) error {
 	// execute system contracts
 	var initialStakes []*big.Int
 	initialStakeTotal := big.NewInt(0)
-	for _, v := range config.ValidatorOwners {
+	for _, v := range config.Owners {
 		rawInitialStake, ok := config.InitialOwnerStakes[v]
 		if !ok {
 			return fmt.Errorf("initial stake is not found for validator: %s", v.Hex())
@@ -307,6 +307,13 @@ func createGenesisConfig(config genesisConfig, targetFile string) error {
 		config.InitialStakes[v] = hexutil.EncodeBig(initialStakes[i])
 	}
 
+	/* todo set owners
+	invokeConstructorOrPanic(genesis, stakingAddress, stakingRawArtifact, []string{"address[]", "address[]", "uint256[]", "uint16"}, []interface{}{
+		config.Validators,
+		config.Owners,
+		initialStakes,
+		uint16(config.CommissionRate),
+	}, silent, initialStakeTotal)*/
 	invokeConstructorOrPanic(genesis, stakingAddress, stakingRawArtifact, []string{"address[]", "uint256[]", "uint16"}, []interface{}{
 		config.Validators,
 		initialStakes,

@@ -1,8 +1,4 @@
 {
-  "autoCreate": {
-    "resultDir": "",
-    "password": ""
-  },
   "chainId": 14001,
   "validators": [
     "0x08fae3885e299c24ff9841478eb946f41023ac69",
