@@ -18,12 +18,13 @@ Edit nr-config.json acccording to your needs
 ```
 
 Cmd:  
-
-   refer to Makefile   
+refer to Makefile
+```
+     
    GOARCH=amd64 GOOS=darwin go build -o ${BINARY_NAME}-darwin nr-create-genesis.go   
    GOARCH=amd64 GOOS=linux go build -o ${BINARY_NAME}-linux nr-create-genesis.go   
    GOARCH=arm64 GOOS=darwin go build -o ${BINARY_NAME}-darwin-arm64 nr-create-genesis.go  
- 
+ ```
    
 
 
