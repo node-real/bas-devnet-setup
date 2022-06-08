@@ -490,7 +490,10 @@ var devNetConfig = genesisConfig{
 	},
 }
 
+const version = "beta-1.0"
+
 func main() {
+	fmt.Printf("version is: %s\n", version)
 	args := os.Args[1:]
 	if len(args) > 0 {
 		fileContents, err := os.ReadFile(args[0])
