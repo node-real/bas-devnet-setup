@@ -20,11 +20,18 @@ Edit nr-config.json acccording to your needs
 Cmd:  
 refer to Makefile
 ```
-     
-   GOARCH=amd64 GOOS=darwin go build -o ${BINARY_NAME}-darwin nr-create-genesis.go   
-   GOARCH=amd64 GOOS=linux go build -o ${BINARY_NAME}-linux nr-create-genesis.go   
-   GOARCH=arm64 GOOS=darwin go build -o ${BINARY_NAME}-darwin-arm64 nr-create-genesis.go  
- ```
+    execute cmd <make all > will build, run and generate genesis.json  ,
+    to content of genesis.json  is by nr-config.json create
+```
+
+For example:
+```
+    mac arm64:  ./create-genesis-darwin-arm64 nr-config.json genesis.json
+    linux amd64: ./create-genesis-linux nr-config.json genesis.json
+    mac amd64:   ./create-genesis-darwin nr-config.json genesis.json
+```
+   
+
    
 
 

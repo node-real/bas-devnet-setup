@@ -2,3 +2,12 @@ genesis.json
 .idea
 blockscout/postgres-data/
 datadir/
+/nr-genesis/nr-tower.json
+/nr-genesis/create-genesis-linux
+/nr-genesis/create-genesis-darwin-arm64
+/nr-genesis/create-genesis-darwin
+/nr-genesis/password.txt
+/nr-genesis/keystore/
+/nr-genesis/build/
+/nr-genesis/node_modules/
+/genesis/
