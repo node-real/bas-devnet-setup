@@ -11,3 +11,5 @@ datadir/
 /nr-genesis/build/
 /nr-genesis/node_modules/
 /genesis/
+/nr-genesis/yarn.lock
+make
