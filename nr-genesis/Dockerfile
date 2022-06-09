@@ -15,13 +15,13 @@ RUN apk add --update --no-cache nodejs npm git make python3 gcc musl-dev linux-h
 WORKDIR /bas/
 COPY --from=contract /build/build ./build
 ADD ./nr-genesis/* .
-RUN make build-linux
+RUN make build-create-genesis
 
 FROM alpine:3.15
 
 WORKDIR /opt/app/nr-create-genesis
 RUN apk add --no-cache ca-certificates
-COPY --from=build /bas/create-genesis-linux ./
+COPY --from=build /bas/create-genesis ./
 COPY --from=build /bas/nr-config.json ./
-
-ENTRYPOINT ./create-genesis-linux
+ENTRYPOINT ["./create-genesis"]
+CMD ["nr-config.json"]

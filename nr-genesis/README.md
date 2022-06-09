@@ -26,9 +26,16 @@ refer to Makefile
 
 For example:
 ```
-    mac arm64:  ./create-genesis-darwin-arm64 nr-config.json genesis.json
-    linux amd64: ./create-genesis-linux nr-config.json genesis.json
-    mac amd64:   ./create-genesis-darwin nr-config.json genesis.json
+    mac arm64:  ./create-genesis-darwin-arm64 nr-config.json 
+    linux amd64: ./create-genesis-linux nr-config.json 
+    mac amd64:   ./create-genesis-darwin nr-config.json 
+```
+Docker:
+```
+   just example:
+   1> cd ..
+   2> docker build -t nr-create-genesis:testv8  . -f ./nr-genesis/Dockerfile 
+   3>  docker run --rm -v ${PWD}/bas-devnet-setup/nr-genesis/nr-config.json:/nr-genesis/nr-config.json  -v ${PWD}/creat001:/creat001  nr-create-genesis:testv13 /nr-genesis/nr-config.json  
 ```
    
 
