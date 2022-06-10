@@ -24,7 +24,7 @@ refer to Makefile
     to content of genesis.json  is by nr-config.json create
 ```
 
-For example:
+Binary example:
 ```
     mac arm64:  ./create-genesis-darwin-arm64 nr-config.json 
     linux amd64: ./create-genesis-linux nr-config.json 
@@ -32,10 +32,22 @@ For example:
 ```
 Docker:
 ```
-   just example:
-   1> cd ..
-   2> docker build -t nr-create-genesis:testv8  . -f ./nr-genesis/Dockerfile 
-   3>  docker run --rm -v ${PWD}/bas-devnet-setup/nr-genesis/nr-config.json:/nr-genesis/nr-config.json  -v ${PWD}/creat001:/creat001  nr-create-genesis:testv13 /nr-genesis/nr-config.json  
+   Just example:
+   1> Build docker
+      a>  cd .. 
+          ## Explain: sure your in bas-denet-up roor dir or say your localtion is nr-genesis parent dir
+      b>  docker build -t imageName:version  . -f ./nr-genesis/Dockerfile 
+   2> Run Cmd:
+          ```  docker run --rm -v ${PWD}/bas-devnet-setup/nr-genesis/nr-config.json:/nr-genesis/nr-config.json  
+                        -v ${PWD}/${autoCreate.resultDir}:/${autoCreate.resultDir}  imageName:version /nr-genesis/nr-config.json 
+                   ``` 
+          ## Explain: nr-config.json is a configuration file that must be configured:
+                    * autoCreate.resultDir -Default current directory
+                    * autoCreate.password  -Default is random number
+                    * chainId
+                    * owners
+                    * systemTreasury
+                    * initialOwnerStakes 
 ```
    
 
