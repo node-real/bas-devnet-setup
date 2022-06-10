@@ -35,7 +35,7 @@ Docker:
    Just example:
    1> Build docker
       a>  cd .. 
-          ## Explain: sure your in bas-denet-up roor dir or say your localtion is nr-genesis parent dir
+          ## Explain: sure your in bas-denet-up root dir or say your localtion is nr-genesis parent dir
       b>  docker build -t imageName:version  . -f ./nr-genesis/Dockerfile 
    2> Run Cmd:
           ```  docker run --rm -v ${PWD}/bas-devnet-setup/nr-genesis/nr-config.json:/nr-genesis/nr-config.json  
