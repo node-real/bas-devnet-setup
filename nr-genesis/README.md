@@ -36,10 +36,10 @@ Docker:
    1> Build docker
       a>  cd .. 
           ## Explain: sure your in bas-denet-up root dir or say your localtion is nr-genesis parent dir
-      b>  docker build -t imageName:version  . -f ./nr-genesis/Dockerfile 
+      b>  docker build -t ${imageName:version}  . -f ./nr-genesis/Dockerfile 
    2> Run Cmd:
           ```  docker run --rm -v ${PWD}/bas-devnet-setup/nr-genesis/nr-config.json:/nr-genesis/nr-config.json  
-                        -v ${PWD}/${autoCreate.resultDir}:/${autoCreate.resultDir}  imageName:version /nr-genesis/nr-config.json 
+                        -v ${PWD}/${autoCreate.resultDir}:/${autoCreate.resultDir}  ${imageName:version} /nr-genesis/nr-config.json 
                    ``` 
           ## Explain: nr-config.json is a configuration file that must be configured:
                     * autoCreate.resultDir -Default current directory
