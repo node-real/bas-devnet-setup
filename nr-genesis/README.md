@@ -48,6 +48,13 @@ Docker:
                     * owners
                     * systemTreasury
                     * initialOwnerStakes 
+   3> Example
+        ```
+        docker build -t nr-create-genesis:test . -f ./nr-genesis/Dockerfile  
+        
+        docker run --rm -v ${PWD}/nr-genesis/nr-config.json:/nr-genesis/nr-config.json 
+            -v ${PWD}/createResult:/createResult nr-create-genesis:test /nr-genesis/nr-config.json         
+        ```         
 ```
    
 
