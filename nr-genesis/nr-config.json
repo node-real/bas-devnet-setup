@@ -1,6 +1,6 @@
 {
   "autoCreate": {
-    "resultDir": "",
+    "resultDir": "/createResult",
     "password": ""
   },
   "chainId": 14001,
