@@ -14,7 +14,7 @@ RUN apk add --update --no-cache nodejs npm git make python3 gcc musl-dev linux-h
 
 WORKDIR /bas/
 COPY --from=contract /build/build ./build
-ADD ./nr-genesis/* .
+ADD ./nr-genesis/* ./
 RUN make build-create-genesis
 
 FROM alpine:3.15
