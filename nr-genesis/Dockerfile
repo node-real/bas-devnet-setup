@@ -2,7 +2,6 @@ FROM golang:1.18.3-alpine3.15 as contract
 WORKDIR /build
 RUN apk update
 RUN apk add --update --no-cache nodejs npm git make python3 gcc musl-dev linux-headers bash
-RUN git submodule update
 RUN npm i -g yarn
 ADD ./genesis/package.json /build/package.json
 RUN yarn || true
