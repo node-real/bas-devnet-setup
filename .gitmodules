@@ -1,4 +1,4 @@
 [submodule "genesis"]
     path = genesis
     url = https://github.com/node-real/bas-genesis-config
-    branch = nr_devel_demo_v1.0
+	branch = nr_devel_demo_v1.0

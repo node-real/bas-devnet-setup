@@ -23,7 +23,9 @@
     "validatorJailEpochLength": 7,
     "undelegatePeriod": 6,
     "minValidatorStakeAmount": "0xde0b6b3a7640000",
-    "minStakingAmount": "0xde0b6b3a7640000"
+    "minStakingAmount": "0xde0b6b3a7640000",
+    "burnRatio": 0
+
   },
   "initialOwnerStakes": {
     "0x08fae3885e299c24ff9841478eb946f41023ac69": "0x3635c9adc5dea00000",
